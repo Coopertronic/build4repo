@@ -5,3 +5,15 @@
 ## Functions
 source ctos-functions
 
+## Recycle
+lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
+
+clear
+cd "$PWD"
+echo "Building package and pushing it to the side repo for compiling ans uploading."
+if !( makepkg -csrf --sign ); then
+    echo "This is not a PKGBUILD"
+    something_wrong
+else
+    echo "The next bit happens here after the package has been signed for."
+fi
