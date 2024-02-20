@@ -1,0 +1,7 @@
+#!/bin/bash
+
+##	This script will chuck the finished zst packages into the side repo and then clean up the site and upload the PKGBUILD version.
+
+## Functions
+source ctos-functions
+
