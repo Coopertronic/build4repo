@@ -29,7 +29,7 @@ else
         something_wrong
     else
         echo "Found the repo location."
-        if !( cp -vir "*.zst.*" "$thRepo" ); then
+        if !( cp -vir *.zst $thRepo ); then
             something_wrong
         else
             echo "Files copied"
