@@ -17,4 +17,9 @@ if !( makepkg -csrf --sign ); then
     something_wrong
 else
     echo "The next bit happens here after the package has been signed for."
+    if !( cp -vir "$PWD/*.zst.*" "/$HOME/pkgbuild/ctos-side-repo/x86_64/" ); then
+        something_wrong
+    else
+    echo "Files copied"
+    fi
 fi
