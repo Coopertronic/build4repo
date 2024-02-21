@@ -9,7 +9,7 @@ source ctos-functions
 lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
 myLocalRepo="pkgbuild/ctos-side-repo"
 myArch="x86_64/"
-thRepo="/$HOME/$myLocalRepo/$myArch"
+thRepo="$HOME/$myLocalRepo/$myArch"
 
 clear
 cd "$PWD"
