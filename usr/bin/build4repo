@@ -15,23 +15,31 @@ clear
 cd "$PWD"
 currentDir=${PWD##*/}
 
-echo "Building package and pushing it to the side repo for compiling ans uploading."
+echo "Building package and pushing"
+echo "it to the side repo for compiling ans uploading."
 if !( makepkg -csrf --sign ); then
     echo "This is not a PKGBUILD"
     not_my_dir
     something_wrong
 else
-    echo "The next bit happens here after the package has been signed for."
-
-
-    if !( cp -vir "$PWD/*.zst.*" "$thRepo" ); then
-        echo "We missed the target."
-        echo "The target dir is: "$thRepo"
-        something_wrong
+    echo "The next bit happens here"
+    echo "after the package has been signed for."
+    if !( test_location "$thRepo" ); then
+    echo "can't find the repo location at: $thRepo"
+    exit 1
     else
-        echo "Files copied"
-        ##  Now we have to determin which are the old files in the side repo and remove them, then we need to remove everything in the ctos-pkgbuild/thing folder appart fromt he PKGBUILD file itself.
-        echo "What are we missing?"
-        exit 0
+    echo "Found the repo location."
+    exit 0
     fi
+
+    #if !( cp -vir "$PWD/*.zst.*" "$thRepo" ); then
+    #    echo "We missed the target."
+    #    echo "The target dir is: "$thRepo"
+    #    something_wrong
+    #else
+    #    echo "Files copied"
+    #    ##  Now we have to determin which are the old files in the side repo and remove them, then we need to remove everything in the ctos-pkgbuild/thing folder appart fromt he PKGBUILD file itself.
+    #    echo "What are we missing?"
+    #    exit 0
+    #fi
 fi
