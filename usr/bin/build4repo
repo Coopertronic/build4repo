@@ -7,6 +7,9 @@ source ctos-functions
 
 ## Recycle
 lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
+myLocalRepo="pkgbuild/ctos-side-repo"
+myArch="x86_64/"
+thRepo="/$HOME/$myLocalRepo/$myArch"
 
 clear
 cd "$PWD"
@@ -17,9 +20,14 @@ if !( makepkg -csrf --sign ); then
     something_wrong
 else
     echo "The next bit happens here after the package has been signed for."
-    if !( cp -vir "$PWD/*.zst.*" "/$HOME/pkgbuild/ctos-side-repo/x86_64/" ); then
+    if !( cp -vir "$PWD/*.zst.*" "$thRepo" ); then
+        echo "We missed the target."
+        echo "The target dir is: "$thRepo"
         something_wrong
     else
-    echo "Files copied"
+        echo "Files copied"
+        ##  Now we have to determin which are the old files in the side repo and remove them, then we need to remove everything in the ctos-pkgbuild/thing folder appart fromt he PKGBUILD file itself.
+        echo "What are we missing?"
+        exit 0
     fi
 fi
