@@ -30,12 +30,14 @@ else
     else
         echo "Found the repo location."
         if !( cp -vir "*.zst.*" "$thRepo" ); then
-        something_wrong
+            something_wrong
         else
-        echo "Files copied"
-        echo "What are we missing?"
-        echo "Time to start deleting the old files and cleaning up the build folder."
-        echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
+            echo "Files copied"
+            echo "What are we missing?"
+            echo "Time to start deleting the old files and cleaning up the build folder."
+            echo $lineBreak
+            echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
+            find_old_pkgs $thRepo $currentDir "zst"
         fi
         exit 0
     fi
