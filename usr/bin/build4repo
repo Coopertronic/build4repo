@@ -13,6 +13,8 @@ thRepo="/$HOME/$myLocalRepo/$myArch"
 
 clear
 cd "$PWD"
+currentDir=${PWD##*/}
+
 echo "Building package and pushing it to the side repo for compiling ans uploading."
 if !( makepkg -csrf --sign ); then
     echo "This is not a PKGBUILD"
@@ -20,6 +22,8 @@ if !( makepkg -csrf --sign ); then
     something_wrong
 else
     echo "The next bit happens here after the package has been signed for."
+
+
     if !( cp -vir "$PWD/*.zst.*" "$thRepo" ); then
         echo "We missed the target."
         echo "The target dir is: "$thRepo"
