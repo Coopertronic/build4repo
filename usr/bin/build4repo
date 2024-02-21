@@ -37,7 +37,11 @@ else
             echo "Time to start deleting the old files and cleaning up the build folder."
             echo $lineBreak
             echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
-            find_old_pkgs $thRepo $currentDir "zst"
+            if !( find_old_pkgs $thRepo $currentDir "zst" ); then
+                something_wrong
+            else
+                echo "These are the .zst files in the repo."
+            fi
         fi
         exit 0
     fi
