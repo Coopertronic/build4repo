@@ -65,7 +65,8 @@ else
                 else
                     echo "These are the .sig files in the repo."
                     echo $lineBreak
-                    echo "Make sure it displays the newest file."
+                    echo "Make sure it displays the newest file"
+                    echo "and the oldest files."
                 fi
             fi
         fi
