@@ -16,7 +16,7 @@ cd "$PWD"
 currentDir=${PWD##*/}
 
 echo "Building package and pushing"
-echo "it to the side repo for compiling ans uploading."
+echo "it to the side repo for compiling and uploading."
 if !( makepkg -csrf --sign ); then
     echo "This is not a PKGBUILD"
     not_my_dir
@@ -24,23 +24,40 @@ if !( makepkg -csrf --sign ); then
 else
     echo "The next bit happens here"
     echo "after the package has been signed for."
+    echo $lineBreak
+    to_continue
+    clear
+    echo $lineBreak
+    echo "Looking for local repo."
     if !( test_location "$thRepo" ); then
         echo "can't find the repo location at: $thRepo"
         something_wrong
     else
         echo "Found the repo location."
+        echo $lineBreak
+        to_continue
+        clear
+        echo $lineBreak
+        echo "Copying the ZST and SIG files to the repo."
         if !( cp -vir *.zst* $thRepo ); then
             something_wrong
         else
             echo "Files copied"
+            echo $lineBreak
             echo "What are we missing?"
+            echo $lineBreak
             echo "Time to start deleting the old files and cleaning up the build folder."
+            echo $lineBreak
+            to_continue
+            clear
             echo $lineBreak
             echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
             if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
                 echo "These are the .zst files in the repo."
+                echo $lineBreak
+                to_continue
                 echo $lineBreak
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
