@@ -3,6 +3,8 @@
 ##  Testing stuff
 
 ##  Get current folder
-currentDir=${PWD##*/}
+#currentDir=${PWD##*/}
 #currentDir=${result:-/}
-echo $currentDir
+#echo $currentDir
+
+
