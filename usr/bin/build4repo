@@ -64,7 +64,7 @@ else
                 else
                     echo "These are the .sig files in the repo."
                     echo $lineBreak
-                    echo "These files need to be passed back and sorted."
+                    echo "Make sure it displays the newest file."
                 fi
             fi
         fi
