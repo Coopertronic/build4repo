@@ -42,6 +42,12 @@ else
             else
                 echo "These are the .zst files in the repo."
                 echo $lineBreak
+                if !( find_old_pkgs $thRepo $currentDir "sig" ); then
+                    something_wrong
+                else
+                    echo "These are the .sig files in the repo."
+                    echo $lineBreak
+                fi
             fi
         fi
         exit 0
