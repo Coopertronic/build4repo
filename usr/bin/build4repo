@@ -57,6 +57,7 @@ else
             else
                 echo "These are the .zst files in the repo."
                 echo $lineBreak
+                echo "Check that there is no issue with the new file being displayed."
                 to_continue
                 echo $lineBreak
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
