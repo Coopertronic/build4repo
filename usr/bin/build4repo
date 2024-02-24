@@ -69,6 +69,7 @@ else
                 echo "Do yo want to read the sig files?"
                 to_continue
                 echo $lineBreak
+                echo "Did it work."
                 if !( find_old_pkgs toDelete $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
