@@ -52,18 +52,24 @@ else
             clear
             echo $lineBreak
             echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
-            toDelete=(find_old_pkgs $thRepo $currentDir "zst")
-            echo "${toDelete[@]}"
+            toDelete=()
+            #echo "${toDelete[@]}"
             to_continue
-            if !( find_old_pkgs $thRepo $currentDir "zst" ); then
+            if !( find_old_pkgs toDelete $thRepo $currentDir "zst" ); then
                 something_wrong
             else
-                echo "These are the .zst files in the repo."
                 echo $lineBreak
-                echo "Check that there is no issue with the new file being displayed."
+                echo "Total files in Build: ${#toDelete[@]}"
+                for i in "${toDelete[@]}"; do
+                    echo "File $i: {toDelete[$i]}"
+                done
+                echo
+                echo "These are the .zst files in the repo."
+                echo "Check that there is no issue with the new files being displayed."
+                echo "Do yo want to read the sig files?"
                 to_continue
                 echo $lineBreak
-                if !( find_old_pkgs $thRepo $currentDir "sig" ); then
+                if !( find_old_pkgs toDelete $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
                     echo "These are the .sig files in the repo."
