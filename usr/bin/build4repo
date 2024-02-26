@@ -59,7 +59,9 @@ else
             else
                 ##  Pull temp file and append to array.
                 echo $lineBreak
+                ##  read from text file
                 readarray -t toDelete /tmp/FOP/old-files.txt
+                ##  Display text file
                 echo "Total files in Build: ${#toDelete[@]}"
                 for i in "${toDelete[@]}"; do
                     echo "File $i: {toDelete[$i]}"
