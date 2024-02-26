@@ -69,10 +69,10 @@ else
                 echo
                 echo "These are the .zst files in the repo."
                 echo "Check that there is no issue with the new files being displayed."
-                echo "Did it work."
+                echo "Did it work?"
+                to_continue
                 echo $lineBreak
                 clear
-                to_continue
                 echo $lineBreak
                 echo "Do you want to read the sig files?"
                 echo $lineBreak
