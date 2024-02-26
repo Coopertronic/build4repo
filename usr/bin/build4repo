@@ -60,32 +60,35 @@ else
                 ##  Pull temp file and append to array.
                 echo $lineBreak
                 ##  read from text file
-                readarray -t toDelete /tmp/FOP/old-files.txt
-                ##  Display text file
-                echo "Total files in Build: ${#toDelete[@]}"
-                for i in "${toDelete[@]}"; do
-                    echo "File $i: {toDelete[$i]}"
-                done
-                echo
-                echo "These are the .zst files in the repo."
-                echo "Check that there is no issue"
-                echo "with the new files being displayed."
-                echo "Did it work?"
-                to_continue
-                echo $lineBreak
-                clear
-                echo $lineBreak
-                echo "Do you want to read the sig files?"
-                echo $lineBreak
-                to_continue
-                echo $lineBreak
-                if !( find_old_pkgs toDelete $thRepo $currentDir "sig" ); then
+                if !( readarray -t toDelete /tmp/FOP/old-files.txt ); then
                     something_wrong
                 else
-                    echo "These are the .sig files in the repo."
+                    ##  Display text file
+                    echo "Total files in Build: ${#toDelete[@]}"
+                    for i in "${toDelete[@]}"; do
+                        echo "File $i: {toDelete[$i]}"
+                    done
+                    echo
+                    echo "These are the .zst files in the repo."
+                    echo "Check that there is no issue"
+                    echo "with the new files being displayed."
+                    echo "Did it work?"
+                    to_continue
                     echo $lineBreak
-                    echo "Make sure it displays the newest file"
-                    echo "and the oldest files."
+                    clear
+                    echo $lineBreak
+                    echo "Do you want to read the sig files?"
+                    echo $lineBreak
+                    to_continue
+                    echo $lineBreak
+                    if !( find_old_pkgs toDelete $thRepo $currentDir "sig" ); then
+                        something_wrong
+                    else
+                        echo "These are the .sig files in the repo."
+                        echo $lineBreak
+                        echo "Make sure it displays the newest file"
+                        echo "and the oldest files."
+                    fi
                 fi
             fi
         fi
