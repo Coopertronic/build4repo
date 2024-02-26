@@ -52,13 +52,14 @@ else
             clear
             echo $lineBreak
             echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
-            toDelete=()
-            #echo "${toDelete[@]}"
             to_continue
+            toDelete=()
             if !( find_old_pkgs toDelete $thRepo $currentDir "zst" ); then
                 something_wrong
             else
+                ##  Pull temp file and append to array.
                 echo $lineBreak
+                readarray -t toDelete /tmp/FOP/old-files.txt
                 echo "Total files in Build: ${#toDelete[@]}"
                 for i in "${toDelete[@]}"; do
                     echo "File $i: {toDelete[$i]}"
@@ -66,10 +67,15 @@ else
                 echo
                 echo "These are the .zst files in the repo."
                 echo "Check that there is no issue with the new files being displayed."
-                echo "Do yo want to read the sig files?"
+                echo "Did it work."
+                echo $lineBreak
+                clear
                 to_continue
                 echo $lineBreak
-                echo "Did it work."
+                echo "Do you want to read the sig files?"
+                echo $lineBreak
+                to_continue
+                echo $lineBreak
                 if !( find_old_pkgs toDelete $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
