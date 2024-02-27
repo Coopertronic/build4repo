@@ -64,9 +64,13 @@ else
                     something_wrong
                 else
                     ##  Display text file
+                    echo $lineBreak
+                    echo "Pass back true?"
+                    echo $lineBreak
+                    to_continue
                     echo "Total files in Build: ${#toDelete[@]}"
                     for i in "${toDelete[@]}"; do
-                        echo "File $i: {toDelete[$i]}"
+                        echo "File $i: {toDelete[$i]}\n"
                     done
                     echo
                     echo "These are the .zst files in the repo."
