@@ -78,6 +78,7 @@ else
                     echo "These are the .zst files in the repo."
                     echo "Check that there is no issue"
                     echo "with the new files being displayed."
+                    echo "This is the last try!!"
                     echo "Did it work or is it blank?"
                     to_continue
                     echo $lineBreak
