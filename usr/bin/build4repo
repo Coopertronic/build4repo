@@ -58,9 +58,10 @@ else
                 something_wrong
             else
                 ##  Pull temp file and append to array.
+                clearecho "Read from file to array."
                 echo $lineBreak
                 ##  read from text file
-                if !( readarray -t toDelete /tmp/FOP/old-files.txt ); then
+                if !( readarray -t toDelete "/tmp/FOP/old-files.txt" ); then
                     something_wrong
                 else
                     ##  Display text file
