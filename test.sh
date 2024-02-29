@@ -11,7 +11,7 @@ currentDir=${PWD##*/}
 clear
 ##  Testing stuff
 
-if !( find_old_pkgs $thRepo $currentDir "zst" ); then
+if !( get_list $thRepo $currentDir "zst" ); then
     something_wrong
 else
     echo "Source functions worked."
