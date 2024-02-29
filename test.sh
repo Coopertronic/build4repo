@@ -43,11 +43,10 @@ get_list() {
     echo $lineBreak
     echo "The string to be passed:"
     echo "$thFilesString"
-    eval "$4=${thFilesString}"
+    local returnString="$thFilesString"
 }
 ##  Testing stuff
-returnString=""
-if !( get_list $thRepo $currentDir "zst" returnString); then
+if !( get_list $thRepo $currentDir "zst" ); then
     something_wrong
 else
     echo "Source functions worked."
