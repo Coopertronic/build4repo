@@ -16,4 +16,8 @@ if !( get_list $thRepo $currentDir "zst" ); then
 else
     echo "Source functions worked."
     echo "See above for results."
+    echo "See what has been passed?"
+    to_continue
+    echo "Here is the string that was passed:"
+    echo "$?"
 fi
