@@ -43,7 +43,7 @@ get_list() {
     echo $lineBreak
     echo "The string to be passed:"
     echo "$thFilesString"
-    eval "$4=$thFilesString"
+    eval "$4='$thFilesString'"
 }
 ##  Testing stuff
 returnString=""
