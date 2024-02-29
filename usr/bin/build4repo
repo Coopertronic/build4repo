@@ -89,7 +89,7 @@ else
             if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
-                get_list $thRepo $currentDir "zst"
+                #get_list $thRepo $currentDir "zst"
                 echo "Source functions worked."
                 echo "See above for results."
                 echo "See what has been passed?"
@@ -105,12 +105,8 @@ else
                     ((count++))
                 done
                 echo "These are the .zst files in the repo."
-                echo "Check that there is no issue"
-                echo "with the new files being displayed."
-                echo "This is the last try!!"
                 echo "Did it work or is it blank?"
                 to_continue
-                echo $lineBreak
                 clear
                 echo $lineBreak
                 echo "Do you want to read the sig files?"
