@@ -8,14 +8,15 @@ myArch="x86_64/"
 thRepo="$HOME/$myLocalRepo/$myArch"
 cd "$PWD"
 currentDir=${PWD##*/}
+declare -a thFiles
 clear
-get_list() {
+function get_list() {
     ##  Fill array
     lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
-    thLocation=$1
-    thPrefix=$2
-    thExtention=$3
-    thFiles=()
+    local thLocation=$1
+    local thPrefix=$2
+    local thExtention=$3
+    #thFiles=()
     echo "The Path: " $thLocation
     echo "The Prefix: " $thPrefix
     echo "The Extention: " $thExtention
@@ -34,16 +35,15 @@ get_list() {
     echo "Here are all the $thExtention files apart from the newest one."
     echo "Total files in function: ${#thFiles[@]}"
     count=0
-    thFilesString=""
+    #thFilesString=""
     for i in "${thFiles[@]}"; do
         echo "File $((count+1)): "$i
-        thFilesString="${thFilesString}${i},"
+        #thFilesString="${thFilesString}${i},"
         ((count++))
     done
     echo $lineBreak
-    echo "The string to be passed:"
-    echo "$thFilesString"
-    local returnString="$thFilesString"
+    #echo "The string to be passed:"
+    #echo "$thFilesString"
 }
 ##  Testing stuff
 if !( get_list $thRepo $currentDir "zst" ); then
@@ -54,6 +54,8 @@ else
     echo "See what has been passed?"
     to_continue
     echo "Here is the string that was passed:"
-    echo $returnString
+    echo "${thFiles[@]}"
 fi
+
+#get_list $thRepo $currentDir "zst" returnString ; zstFiles=${returnString}
 
