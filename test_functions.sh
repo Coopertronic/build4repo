@@ -27,7 +27,7 @@ get_list() {
     echo "Here are all the $thExtention files apart from the newest one."
     echo "Total files in function: ${#thFiles[@]}"
     for i in "${thFiles[@]}"; do
-        echo "File $i: {thFiles[$i]}\n"
+        echo "File $i: "{thFiles[$i]}"\n"
     done
     echo $lineBreak
 }
