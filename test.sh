@@ -10,8 +10,8 @@ cd "$PWD"
 currentDir=${PWD##*/}
 clear
 ##  Testing stuff
-
-if !( get_list $thRepo $currentDir "zst" ); then
+returnString=""
+if !( get_list $thRepo $currentDir "zst" returnString); then
     something_wrong
 else
     echo "Source functions worked."
@@ -19,5 +19,5 @@ else
     echo "See what has been passed?"
     to_continue
     echo "Here is the string that was passed:"
-    echo "$?"
+    echo $returnString
 fi
