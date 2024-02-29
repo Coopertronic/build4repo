@@ -28,7 +28,7 @@ get_list() {
     echo "Total files in function: ${#thFiles[@]}"
     count=0
     for i in "${thFiles[@]}"; do
-        echo "File $count+1: "${thFiles[$count]}
+        echo "File $((count+1)): "${thFiles[$count]}
         ((count++))
     done
     echo $lineBreak
