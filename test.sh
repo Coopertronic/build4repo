@@ -9,19 +9,6 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 cd "$PWD"
 currentDir=${PWD##*/}
 clear
-##  Testing stuff
-returnString=""
-if !( get_list $thRepo $currentDir "zst" returnString); then
-    something_wrong
-else
-    echo "Source functions worked."
-    echo "See above for results."
-    echo "See what has been passed?"
-    to_continue
-    echo "Here is the string that was passed:"
-    echo $returnString
-fi
-
 get_list() {
     ##  Fill array
     lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
@@ -58,3 +45,16 @@ get_list() {
     echo "$thFilesString"
     eval "$4=$thFilesString"
 }
+##  Testing stuff
+returnString=""
+if !( get_list $thRepo $currentDir "zst" returnString); then
+    something_wrong
+else
+    echo "Source functions worked."
+    echo "See above for results."
+    echo "See what has been passed?"
+    to_continue
+    echo "Here is the string that was passed:"
+    echo $returnString
+fi
+
