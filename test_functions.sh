@@ -29,7 +29,7 @@ get_list() {
     count=0
     for i in "${thFiles[@]}"; do
         echo "File $i: "${thFiles[$count]}"\n"
-        count++
+        ((count++))
     done
     echo $lineBreak
 }
