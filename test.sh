@@ -1,31 +1,19 @@
 #!/bin/bash
 
+source test_functions.sh
+source ctos-functions
+lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
+myLocalRepo="pkgBld/ctos-side-repo"
+myArch="x86_64/"
+thRepo="$HOME/$myLocalRepo/$myArch"
+cd "$PWD"
+currentDir=${PWD##*/}
+clear
 ##  Testing stuff
 
-##  Get current folder
-#currentDir=${PWD##*/}
-#currentDir=${result:-/}
-#echo $currentDir
-
-function fillArray() {
-    declare -n arrayName=$1
-
-    for i in 0 1 2 3; do
-        arrayName+=("new item $i")
-    done
-
-    echo "Tot items in function: ${#arrayName[@]}"
-    for item in "${arrayName[@]}"; do
-        echo $item
-    done
-    echo
-}
-
-myArray=("my item 0" "my item 1")
-
-fillArray myArray
-
-echo "Tot items in main: ${#myArray[@]}"
-for item in "${myArray[@]}"; do
-    echo $item
-done
+if !( find_old_pkgs $thRepo $currentDir "zst" ); then
+    something_wrong
+else
+    echo "Source functions worked."
+    echo "See above for results."
+fi
