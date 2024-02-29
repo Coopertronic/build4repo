@@ -104,7 +104,6 @@ else
                     echo "File $((count + 1)): "$i
                     ((count++))
                 done
-                echo
                 echo "These are the .zst files in the repo."
                 echo "Check that there is no issue"
                 echo "with the new files being displayed."
