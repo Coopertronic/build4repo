@@ -37,7 +37,7 @@ function get_list() {
     count=0
     #thFilesString=""
     for i in "${thFiles[@]}"; do
-        echo "File $((count+1)): "$i
+        echo "File $((count + 1)): "$i
         #thFilesString="${thFilesString}${i},"
         ((count++))
     done
@@ -46,16 +46,16 @@ function get_list() {
     #echo "$thFilesString"
 }
 ##  Testing stuff
-if !( get_list $thRepo $currentDir "zst" ); then
-    something_wrong
-else
-    echo "Source functions worked."
-    echo "See above for results."
-    echo "See what has been passed?"
-    to_continue
-    echo "Here is the string that was passed:"
-    echo "${thFiles[@]}"
-fi
+#if !( get_list $thRepo $currentDir "zst" ); then
+#    something_wrong
+#else
+get_list $thRepo $currentDir "zst"
+echo "Source functions worked."
+echo "See above for results."
+echo "See what has been passed?"
+to_continue
+echo "Here is the string that was passed:"
+echo "${thFiles[@]}"
+#fi
 
 #get_list $thRepo $currentDir "zst" returnString ; zstFiles=${returnString}
-
