@@ -1,5 +1,7 @@
 #!/bin/bash
 
+##  I don't know if I can get this going with global array. It works when placed in the main script.
+
 source ctos-functions
 
 get_list() {

@@ -15,6 +15,39 @@ clear
 cd "$PWD"
 currentDir=${PWD##*/}
 
+##  Global
+declare -a thFiles
+
+## Functions
+function find_old_pkgs() {
+    ##  Fill array
+    local thLocation=$1
+    local thPrefix=$2
+    local thExtention=$3
+    echo "The Path: " $thLocation
+    echo "The Prefix: " $thPrefix
+    echo "The Extention: " $thExtention
+    newFileLocation=$(ls -t $thLocation$thPrefix*.$thExtention | head -1)
+    echo $lineBreak
+    newFile=${newFileLocation##*/}
+    echo "Here is the newest file: " $newFile
+    for f in $thLocation$thPrefix*.$thExtention; do
+        fileName=${f##*/}
+        if [ "$fileName" != "$newFile" ]; then
+            thFiles+=($fileName)
+        fi
+    done
+    echo $lineBreak
+    echo "Here are all the $thExtention files apart from the newest one."
+    echo "Total files in function: ${#thFiles[@]}"
+    count=0
+    for i in "${thFiles[@]}"; do
+        echo "File $((count + 1)): "$i
+        ((count++))
+    done
+    echo $lineBreak
+}
+
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
 if !( makepkg -csrf --sign ); then
@@ -53,50 +86,47 @@ else
             echo $lineBreak
             echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
             to_continue
-            toDelete=()
-            if !( find_old_pkgs toDelete $thRepo $currentDir "zst" ); then
+            if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
-                ##  Pull temp file and append to array.
-                clear
-                echo "Read from file into array."
+                get_list $thRepo $currentDir "zst"
+                echo "Source functions worked."
+                echo "See above for results."
+                echo "See what has been passed?"
+                to_continue
+                echo "Here is the array that was passed:"
+                echo "${thFiles[@]}"
                 echo $lineBreak
-                ##  read from text file
-                if !( readarray -t toDelete < "old-files.txt" ); then
+                echo "Pass back true?"
+                echo $lineBreak
+                echo "Total files in function: ${#thFiles[@]}"
+                for i in "${thFiles[@]}"; do
+                    echo "File $((count + 1)): "$i
+                    ((count++))
+                done
+                echo
+                echo "These are the .zst files in the repo."
+                echo "Check that there is no issue"
+                echo "with the new files being displayed."
+                echo "This is the last try!!"
+                echo "Did it work or is it blank?"
+                to_continue
+                echo $lineBreak
+                clear
+                echo $lineBreak
+                echo "Do you want to read the sig files?"
+                echo $lineBreak
+                to_continue
+                echo $lineBreak
+                if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
-                    ##  Display text file
+                    echo "These are the .sig files in the repo."
                     echo $lineBreak
-                    echo "Pass back true?"
-                    echo $lineBreak
-                    to_continue
-                    echo "Total files in Build: ${#toDelete[@]}"
-                    for i in "${toDelete[@]}"; do
-                        echo "File $i: {toDelete[$i]}\n"
-                    done
-                    echo
-                    echo "These are the .zst files in the repo."
-                    echo "Check that there is no issue"
-                    echo "with the new files being displayed."
-                    echo "This is the last try!!"
-                    echo "Did it work or is it blank?"
-                    to_continue
-                    echo $lineBreak
-                    clear
-                    echo $lineBreak
-                    echo "Do you want to read the sig files?"
-                    echo $lineBreak
-                    to_continue
-                    echo $lineBreak
-                    if !( find_old_pkgs toDelete $thRepo $currentDir "sig" ); then
-                        something_wrong
-                    else
-                        echo "These are the .sig files in the repo."
-                        echo $lineBreak
-                        echo "Make sure it displays the newest file"
-                        echo "and the oldest files."
-                    fi
+                    echo "Make sure it displays the newest file"
+                    echo "and the oldest files."
                 fi
+                #fi
             fi
         fi
         exit 0

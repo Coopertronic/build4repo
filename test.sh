@@ -30,8 +30,8 @@ function get_list() {
     done
     echo $lineBreak
     echo "Here are all the $thExtention files apart from the newest one."
-    echo "Total files in function: ${#thFiles[@]}"
     count=0
+    echo "Total files in function: ${#thFiles[@]}"
     for i in "${thFiles[@]}"; do
         echo "File $((count + 1)): "$i
         ((count++))
