@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 #source test_functions.sh
 source ctos-functions
 lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
