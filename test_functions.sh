@@ -27,9 +27,13 @@ get_list() {
     echo "Here are all the $thExtention files apart from the newest one."
     echo "Total files in function: ${#thFiles[@]}"
     count=0
+    thFilesString=""
     for i in "${thFiles[@]}"; do
-        echo "File $((count+1)): "${thFiles[$count]}
+        echo "File $((count+1)): "$i
+        thFilesString="${thFilesString}${i},"
         ((count++))
     done
     echo $lineBreak
+    echo "The string to be passed:"
+    echo "$thFilesString"
 }
