@@ -15,46 +15,6 @@ clear
 cd "$PWD"
 currentDir=${PWD##*/}
 
-## Functions
-#function find_old_pkgs() {
-#    lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
-#    ##  Fill array
-#    local thFiles=()
-#    local thLocation=$1
-#    local thPrefix=$2
-#    local thExtention=$3
-#    echo "The Path: " $thLocation
-#    echo "The Prefix: " $thPrefix
-#    echo "The Extention: " $thExtention
-#    newFileLocation=$(ls -t $thLocation$thPrefix*.$thExtention | head -1)
-#    echo $lineBreak
-#    newFile=${newFileLocation##*/}
-#    echo "Here is the newest file: " $newFile
-#    for f in $thLocation$thPrefix*.$thExtention; do
-#        fileName=${f##*/}
-#        if [ "$fileName" != "$newFile" ]; then
-#            thFiles+=($fileName)
-#        fi
-#    done
-#    echo $lineBreak
-#    echo "Here are all the $thExtention files apart from the newest one."
-#    echo "Total files in function: ${#thFiles[@]}"
-#    count=0
-#    for i in "${thFiles[@]}"; do
-#        echo "File $((count + 1)): "$i
-#        ((count++))
-#    done
-#    echo $lineBreak
-#    echo "Do you want to delete them?"
-#    to_continue
-#    echo $lineBreak
-#    for i in "${thFiles[@]}"; do
-#        echo "Deleting file $((count + 1)): "$i
-#        rm $i
-#        ((count++))
-#    done
-#}
-
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
 if !( makepkg -csrf --sign ); then
@@ -75,17 +35,12 @@ else
     else
         echo "Found the repo location."
         echo $lineBreak
-        #to_continue
-        #clear
-        #echo $lineBreak
         echo "Copying the ZST and SIG files to the repo."
         if !( cp -vir *.zst* $thRepo ); then
             something_wrong
         else
             echo "Files copied"
             echo $lineBreak
-            #echo "What are we missing?"
-            #echo $lineBreak
             echo "Time to start deleting the"
             echo "old files and cleaning up"
             echo "the build folder."
@@ -97,7 +52,6 @@ else
             echo "x86_64 folder and remove the"
             echo "oldest ones leaving the newest"
             echo "zst and the sig files."
-            #to_continue
             if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
@@ -105,11 +59,26 @@ else
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
+                    echo $lineBreak
                     echo "ZST and SIG files deleted from the"
                     echo "the repo directory."
                     echo $lineBreak
+                    echo "Do you want to clean"
+                    echo "up build folder?"
+                    to_continue
+                    for f in $PWD*; do
+                        fileName=${f##*/}
+                        if [ "$fileName" != "PKGBUILD" ]; then
+                            thFiles+=($fileName)
+                        fi
+                    done
+                    echo "Total files in build folder: ${#thFiles[@]}"
+                    count=0
+                    for i in "${thFiles[@]}"; do
+                        echo "File $((count + 1)): "$i
+                        ((count++))
+                    done
                 fi
-                #fi
             fi
         fi
         exit 0
