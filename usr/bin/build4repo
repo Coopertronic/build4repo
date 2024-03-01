@@ -62,8 +62,8 @@ if !( makepkg -csrf --sign ); then
     not_my_dir
     something_wrong
 else
-    echo "The next bit happens here"
-    echo "after the package has been signed for."
+    echo "New package built for $currentDir."
+    echo "Do you want to copy it to the repo?"
     echo $lineBreak
     to_continue
     clear
@@ -75,28 +75,33 @@ else
     else
         echo "Found the repo location."
         echo $lineBreak
-        to_continue
-        clear
-        echo $lineBreak
+        #to_continue
+        #clear
+        #echo $lineBreak
         echo "Copying the ZST and SIG files to the repo."
         if !( cp -vir *.zst* $thRepo ); then
             something_wrong
         else
             echo "Files copied"
             echo $lineBreak
-            echo "What are we missing?"
-            echo $lineBreak
-            echo "Time to start deleting the old files and cleaning up the build folder."
+            #echo "What are we missing?"
+            #echo $lineBreak
+            echo "Time to start deleting the"
+            echo "old files and cleaning up"
+            echo "the build folder."
+            echo "Are you ready?"
             echo $lineBreak
             to_continue
             clear
-            echo $lineBreak
-            echo "Check for duplicates in the x86_64 folder and remove the oldest ones leaving the newest zst and the sig files."
-            to_continue
+            echo "Let's Check for duplicates in the"
+            echo "x86_64 folder and remove the"
+            echo "oldest ones leaving the newest"
+            echo "zst and the sig files."
+            #to_continue
             if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
-            echo "looking for "
+                echo "looking for "
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
