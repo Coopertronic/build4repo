@@ -73,13 +73,20 @@ else
                     clear
                     echo $lineBreak
                     echo "Check the build folder."
+                    echo $lineBreak
                     echo "$(ls)"
+                    echo $lineBreak
                     echo "Is this correct?"
                     to_continue
                     clear
                     echo $lineBreak
                     cd ..
                     update-git
+                    echo "Finished $currentDir"
+                    echo "Do you want to push to the side repo?"
+                    to_continue
+                    cd $HOME/$myLocalRepo
+                    bash update-repo.sh
                 fi
             fi
         fi
