@@ -87,6 +87,7 @@ else
                     to_continue
                     cd $HOME/$myLocalRepo
                     bash update-repo.sh
+                    echo "This is done."
                 fi
             fi
         fi
