@@ -66,27 +66,30 @@ else
                     echo "Do you want to clean"
                     echo "up build folder?"
                     to_continue
-                    for f in $PWD*; do
-                        fileName=${f##*/}
-                        if [ "$fileName" != "PKGBUILD" ]; then
-                            thFiles+=($fileName)
-                        fi
-                    done
-                    echo "Total files in build folder: ${#thFiles[@]}"
-                    count=0
-                    for i in "${thFiles[@]}"; do
-                        echo "File $((count + 1)): "$i
-                        ((count++))
-                    done
-                    echo $lineBreak
-                    echo "Do you want to delete?"
-                    to_continue
-                    echo $lineBreak
-                    for i in "${thFiles[@]}"; do
-                        echo "Deleting file $((count + 1)): "$i
-                        rm $PWD$i
-                        ((count++))
-                    done
+                    ##  Did not work
+                    #for f in $PWD*; do
+                    #    fileName=${f##*/}
+                    #    if [ "$fileName" != "PKGBUILD" ]; then
+                    #        thFiles+=($fileName)
+                    #    fi
+                    #done
+                    #echo "Total files in build folder: ${#thFiles[@]}"
+                    #count=0
+                    #for i in "${thFiles[@]}"; do
+                    #    echo "File $((count + 1)): "$i
+                    #    ((count++))
+                    #done
+                    #echo $lineBreak
+                    #echo "Do you want to delete?"
+                    #to_continue
+                    #echo $lineBreak
+                    #for i in "${thFiles[@]}"; do
+                    #    echo "Deleting file $((count + 1)): "$i
+                    #    rm $PWD$i
+                    #    ((count++))
+                    #done
+                    find . ! -name 'PKGBUILD' -type f -exec rm -f {} +
+                    sudo find . ! -name 'PKGBUILD' -type d -exec rm -rf {} +
                 fi
             fi
         fi
