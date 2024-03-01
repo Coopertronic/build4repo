@@ -25,7 +25,7 @@ else
     echo "New package built for $currentDir."
     echo "Do you want to copy it to the repo?"
     echo $lineBreak
-    to_continue
+    #to_continue
     clear
     echo $lineBreak
     echo "Looking for local repo."
@@ -46,7 +46,7 @@ else
             echo "the build folder."
             echo "Are you ready?"
             echo $lineBreak
-            to_continue
+            #to_continue
             clear
             echo "Let's Check for duplicates in the"
             echo "x86_64 folder and remove the"
@@ -67,7 +67,7 @@ else
                     echo $lineBreak
                     echo "Do you want to clean"
                     echo "up build folder?"
-                    to_continue
+                    #to_continue
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     echo $lineBreak
                     echo "You need your password here."
@@ -80,7 +80,7 @@ else
                     echo "$(ls)"
                     echo $lineBreak
                     echo "Is this correct?"
-                    to_continue
+                    #to_continue
                     clear
                     echo $lineBreak
                     cd ..
