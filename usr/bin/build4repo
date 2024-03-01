@@ -15,12 +15,11 @@ clear
 cd "$PWD"
 currentDir=${PWD##*/}
 
-##  Global
-declare -a thFiles
-
 ## Functions
 function find_old_pkgs() {
+    lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
     ##  Fill array
+    local thFiles=()
     local thLocation=$1
     local thPrefix=$2
     local thExtention=$3
@@ -46,6 +45,14 @@ function find_old_pkgs() {
         ((count++))
     done
     echo $lineBreak
+    echo "Do you want to delete them?"
+    to_continue
+    echo $lineBreak
+    for i in "${thFiles[@]}"; do
+        echo "Deleting file $((count + 1)): "$i
+        rm $i
+        ((count++))
+    done
 }
 
 echo "Building package and pushing"
@@ -89,37 +96,13 @@ else
             if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
-                #get_list $thRepo $currentDir "zst"
-                echo "Source functions worked."
-                echo "See above for results."
-                echo "See what has been passed?"
-                to_continue
-                echo "Here is the array that was passed:"
-                echo "${thFiles[@]}"
-                echo $lineBreak
-                echo "Pass back true?"
-                echo $lineBreak
-                echo "Total files in function: ${#thFiles[@]}"
-                for i in "${thFiles[@]}"; do
-                    echo "File $((count + 1)): "$i
-                    ((count++))
-                done
-                echo "These are the .zst files in the repo."
-                echo "Did it work or is it blank?"
-                to_continue
-                clear
-                echo $lineBreak
-                echo "Do you want to read the sig files?"
-                echo $lineBreak
-                to_continue
-                echo $lineBreak
+            echo "looking for "
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
-                    echo "These are the .sig files in the repo."
+                    echo "ZST and SIG files deleted from the"
+                    echo "the repo directory."
                     echo $lineBreak
-                    echo "Make sure it displays the newest file"
-                    echo "and the oldest files."
                 fi
                 #fi
             fi
