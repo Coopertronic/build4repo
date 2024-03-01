@@ -78,6 +78,15 @@ else
                         echo "File $((count + 1)): "$i
                         ((count++))
                     done
+                    echo $lineBreak
+                    echo "Do you want to delete?"
+                    to_continue
+                    echo $lineBreak
+                    for i in "${thFiles[@]}"; do
+                        echo "Deleting file $((count + 1)): "$i
+                        rm $PWD$i
+                        ((count++))
+                    done
                 fi
             fi
         fi
