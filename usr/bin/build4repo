@@ -69,10 +69,13 @@ else
                     echo "up build folder?"
                     to_continue
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
+                    echo $lineBreak
+                    echo "You need your password here."
                     sudo find . ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
                     clear
                     echo $lineBreak
-                    echo "Check the build folder."
+                    echo "Build folder cleared."
+                    echo "Checking the build folder."
                     echo $lineBreak
                     echo "$(ls)"
                     echo $lineBreak
