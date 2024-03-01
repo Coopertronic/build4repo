@@ -55,7 +55,9 @@ else
             if !( find_old_pkgs $thRepo $currentDir "zst" ); then
                 something_wrong
             else
-                echo "looking for "
+                clear
+                echo $lineBreak
+                echo "Checking for sig files."
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
@@ -68,8 +70,16 @@ else
                     to_continue
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     sudo find . ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
+                    clear
                     echo $lineBreak
                     echo "Check the build folder."
+                    echo "$(ls)"
+                    echo "Is this correct?"
+                    to_continue
+                    clear
+                    echo $lineBreak
+                    cd ..
+                    update-git
                 fi
             fi
         fi
