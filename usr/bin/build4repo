@@ -67,7 +67,9 @@ else
                     echo $lineBreak
                     echo "Do you want to clean"
                     echo "up build folder?"
-                    #to_continue
+                    to_continue
+                    #shopt -s extglob
+                    
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     echo $lineBreak
                     echo "You need your password here."
