@@ -13,9 +13,11 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 ## Get needed passwords for the build
 clear
 line_break
-read -s "Please enter your github password:" MYGHP
+echo "Please enter your github password:"
+read -s MYGHP
 line_break
-read -s "Please enter your side repo password:" MYSRP
+echo "Please enter your side repo password:"
+read -s MYSRP
 line_break
 echo "Here is your GitHub Password: $MYGHP"
 echo "Here is your side repo Password: $MYSRP"
