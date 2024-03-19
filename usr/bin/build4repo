@@ -10,16 +10,6 @@ myLocalRepo="pkgBld/ctos-side-repo"
 myArch="x86_64/"
 thRepo="$HOME/$myLocalRepo/$myArch"
 
-## Get needed passwords for the build
-clear
-line_break
-echo "Please enter your side repo password:"
-read -s MYSRP
-line_break
-echo "Here is your GitHub Password: $MYGHP"
-echo "Here is your side repo Password: $MYSRP"
-to_continue
-
 clear
 cd "$PWD"
 currentDir=${PWD##*/}
@@ -92,7 +82,6 @@ else
                     echo "Passing the password to github ..."
                     line_break
                     cd ..
-                    #bash sshpass -p "$MYGHP" update-git
                     update-git
                     echo "Finished $currentDir"
                     echo "Do you want to push to the side repo?"
@@ -105,6 +94,4 @@ else
         fi
     fi
 fi
-#unset MYGHP
-unset MYSRP
 exit 0
