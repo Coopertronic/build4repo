@@ -13,10 +13,13 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 ## Get needed passwords for the build
 clear
 line_break
-read -s "Please enter your github password:" myGHP
-export myGHP
-read -s "Please enter your side repo password:" mySRP
-export mySRP
+read -s "Please enter your github password:" MYGHP
+line_break
+read -s "Please enter your side repo password:" MYSRP
+line_break
+echo "Here is your GitHub Password: $MYGHP"
+echo "Here is your side repo Password: $MYSRP"
+to_continue
 
 clear
 cd "$PWD"
@@ -32,7 +35,6 @@ else
     echo "New package built for $currentDir."
     echo "Do you want to copy it to the repo?"
     line_break
-    #to_continue
     clear
     line_break
     echo "Looking for local repo."
@@ -93,6 +95,7 @@ else
                     clear
                     line_break
                     cd ..
+                    sshpass 
                     update-git
                     echo "Finished $currentDir"
                     echo "Do you want to push to the side repo?"
@@ -105,4 +108,6 @@ else
         fi
     fi
 fi
+unset MYGHP
+unset MYSRP
 exit 0
