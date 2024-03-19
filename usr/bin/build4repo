@@ -94,6 +94,8 @@ else
                     #to_continue
                     clear
                     line_break
+                    echo "Passing the password to github ..."
+                    line_break
                     cd ..
                     sshpass -p "$MYGHP" update-git
                     #update-git
