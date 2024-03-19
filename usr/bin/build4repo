@@ -13,9 +13,6 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 ## Get needed passwords for the build
 clear
 line_break
-echo "Please enter your github password:"
-read -s MYGHP
-line_break
 echo "Please enter your side repo password:"
 read -s MYSRP
 line_break
@@ -95,8 +92,8 @@ else
                     echo "Passing the password to github ..."
                     line_break
                     cd ..
-                    bash sshpass -p "$MYGHP" update-git
-                    #update-git
+                    #bash sshpass -p "$MYGHP" update-git
+                    update-git
                     echo "Finished $currentDir"
                     echo "Do you want to push to the side repo?"
                     to_continue
@@ -108,6 +105,6 @@ else
         fi
     fi
 fi
-unset MYGHP
+#unset MYGHP
 unset MYSRP
 exit 0
