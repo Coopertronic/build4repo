@@ -95,8 +95,8 @@ else
                     clear
                     line_break
                     cd ..
-                    sshpass 
-                    update-git
+                    sshpass -p "$MYGHP" update-git
+                    #update-git
                     echo "Finished $currentDir"
                     echo "Do you want to push to the side repo?"
                     to_continue
