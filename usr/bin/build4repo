@@ -6,10 +6,17 @@
 source ctos-functions
 
 ## Recycle
-lineBreak="<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>"
 myLocalRepo="pkgBld/ctos-side-repo"
 myArch="x86_64/"
 thRepo="$HOME/$myLocalRepo/$myArch"
+
+## Get needed passwords for the build
+clear
+line_break
+read -s "Please enter your github password:" myGHP
+export myGHP
+read -s "Please enter your side repo password:" mySRP
+export mySRP
 
 clear
 cd "$PWD"
@@ -24,28 +31,28 @@ if !( makepkg -csrf --sign ); then
 else
     echo "New package built for $currentDir."
     echo "Do you want to copy it to the repo?"
-    echo $lineBreak
+    line_break
     #to_continue
     clear
-    echo $lineBreak
+    line_break
     echo "Looking for local repo."
     if !( test_location "$thRepo" ); then
         echo "can't find the repo location at: $thRepo"
         something_wrong
     else
         echo "Found the repo location."
-        echo $lineBreak
+        line_break
         echo "Copying the ZST and SIG files to the repo."
         if !( cp -vir *.zst* $thRepo ); then
             something_wrong
         else
             echo "Files copied"
-            echo $lineBreak
+            line_break
             echo "Time to start deleting the"
             echo "old files and cleaning up"
             echo "the build folder."
             echo "Are you ready?"
-            echo $lineBreak
+            line_break
             #to_continue
             clear
             echo "Let's Check for duplicates in the"
@@ -56,35 +63,35 @@ else
                 something_wrong
             else
                 clear
-                echo $lineBreak
+                line_break
                 echo "Checking for sig files."
                 if !( find_old_pkgs $thRepo $currentDir "sig" ); then
                     something_wrong
                 else
-                    echo $lineBreak
+                    line_break
                     echo "ZST and SIG files deleted from the"
                     echo "the repo directory."
-                    echo $lineBreak
+                    line_break
                     echo "Do you want to clean"
                     echo "up build folder?"
                     to_continue
                     #shopt -s extglob
-                    
+
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
-                    echo $lineBreak
+                    line_break
                     echo "You need your password here."
                     sudo find . ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
                     clear
-                    echo $lineBreak
+                    line_break
                     echo "Build folder cleared."
                     echo "Checking the build folder."
-                    echo $lineBreak
+                    line_break
                     echo "$(ls)"
-                    echo $lineBreak
+                    line_break
                     echo "Is this correct?"
                     #to_continue
                     clear
-                    echo $lineBreak
+                    line_break
                     cd ..
                     update-git
                     echo "Finished $currentDir"
@@ -96,6 +103,6 @@ else
                 fi
             fi
         fi
-        exit 0
     fi
 fi
+exit 0
