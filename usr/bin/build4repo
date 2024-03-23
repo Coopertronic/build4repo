@@ -63,11 +63,6 @@ else
                     echo "ZST and SIG files deleted from the"
                     echo "the repo directory."
                     line_break
-                    #echo "Do you want to clean"
-                    #echo "up build folder?"
-                    #to_continue
-                    #shopt -s extglob
-
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     line_break
                     echo "You need your password here."
@@ -78,8 +73,6 @@ else
                     echo "Checking the build folder."
                     line_break
                     echo "$(ls)"
-                    line_break
-                    echo "Passing the password to github ..."
                     line_break
                     cd ..
                     update-git
