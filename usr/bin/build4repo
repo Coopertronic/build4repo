@@ -15,6 +15,14 @@ cd "$PWD"
 currentDir=${PWD##*/}
 thBuildAssets=".pkgbuild"
 
+##  Check push to repo flag 0 is default (ask) 1 is no and 2 is yes
+local pushRepo=0
+if [ -z "$1" ]; then
+    pushRepo=0
+else
+    pushRepo=$1
+fi
+
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
 
@@ -100,7 +108,7 @@ else
                     echo "ZST and SIG files deleted from the"
                     echo "the repo directory."
                     line_break
-                    to_continue
+                    #to_continue
                     clear
                     line_break '#'
                     echo "Clearing the files from the build folder."
@@ -108,7 +116,7 @@ else
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     line_break '^'
                     echo "Are these the correct files?"
-                    to_continue
+                    #to_continue
                     clear
                     line_break '#'
                     echo "Clearing the folders from the build folder."
@@ -122,7 +130,7 @@ else
                         line_break '#' 10
                     fi
                     echo "Build folder cleared. Is this correct?"
-                    to_continue
+                    #to_continue
                     clear
                     line_break '#'
                     echo "Checking the build folder."
@@ -130,15 +138,23 @@ else
                     echo "$(ls -a)"
                     line_break
                     echo "Are the correct files and folders correct?"
-                    to_continue
+                    #to_continue
                     cd ..
                     update-git
                     echo "Finished $currentDir"
-                    echo "Do you want to push to the side repo?"
-                    to_continue
-                    cd $HOME/$myLocalRepo
-                    bash update-repo.sh
-                    echo "This is done."
+                    if [ $pushRepo != 0 ]; then
+                        if [ $pushRepo != 1 ]; then
+                            cd $HOME/$myLocalRepo
+                            bash update-repo.sh
+                            echo "This is done."
+                        fi
+                    else
+                        echo "Do you want to push to the side repo?"
+                        to_continue
+                        cd $HOME/$myLocalRepo
+                        bash update-repo.sh
+                        echo "This is done."
+                    fi
                 fi
             fi
         fi
