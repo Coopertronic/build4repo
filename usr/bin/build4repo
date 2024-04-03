@@ -125,9 +125,9 @@ else
                     sudo find . ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
                     line_break '^'
                     if !(mv -v ../.pkgbuild/ ./); then
-                        line_break '#' 10
+                        line_break '#' 34
                         echo "Could not move the assets folder back."
-                        line_break '#' 10
+                        line_break '#' 34
                     fi
                     echo "Build folder cleared. Is this correct?"
                     #to_continue
@@ -141,19 +141,21 @@ else
                     #to_continue
                     cd ..
                     update-git
-                    echo "Finished $currentDir"
+                    repoReady="The ctos-side-repo is updated/nand ready to serve/nthe updated packages."
+                    echo "Finished building $currentDir package."
+                    ##  If it's not 0 (ask) and not 1 (no) then it must be 2 (yes)
                     if [ $pushRepo != 0 ]; then
                         if [ $pushRepo != 1 ]; then
                             cd $HOME/$myLocalRepo
                             bash update-repo.sh
-                            echo "This is done."
+                            echo "$repoReady"
                         fi
                     else
                         echo "Do you want to push to the side repo?"
                         to_continue
                         cd $HOME/$myLocalRepo
                         bash update-repo.sh
-                        echo "This is done."
+                        echo "$repoReady"
                     fi
                 fi
             fi
