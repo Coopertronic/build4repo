@@ -66,7 +66,7 @@ else
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     line_break
                     echo "You need your password here."
-                    sudo find . ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
+                    sudo find . ! -name 'pkgbuild' -type d -exec rm -vrf {} +
                     clear
                     line_break
                     echo "Build folder cleared."
