@@ -95,10 +95,11 @@ else
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     line_break
                     echo "You need your password here."
-                    sudo find . ! -name 'pkgbuild' -type d -exec rm -vrf {} +
-                    clear
+                    sudo find . ! -name './pkgbuild' -type d -exec rm -vrf {} +
+                    #clear
                     line_break
-                    echo "Build folder cleared."
+                    echo "Build folder cleared. Is this correct?"
+                    to_continue
                     echo "Checking the build folder."
                     line_break
                     echo "$(ls)"
