@@ -97,7 +97,7 @@ else
                     line_break '#'
                     echo "Clearing the files from the build folder."
                     line_break
-                    find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
+                    find . ! -name 'PKGBUILD' -type f -exec rm -v {} +
                     line_break '^'
                     echo "Are these the correct files?"
                     to_continue
@@ -106,7 +106,7 @@ else
                     echo "Clearing the folders from the build folder."
                     line_break
                     echo "You may need your password here."
-                    sudo find . -mindepth 0 -path './pkgbuild' -prune -o ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
+                    sudo find . -mindepth 0 -path 'pkgbuild' -prune -o ! -name '*' -type d -exec rm -vr {} +
                     line_break '^'
                     echo "Build folder cleared. Is this correct?"
                     to_continue
