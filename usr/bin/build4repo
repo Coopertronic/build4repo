@@ -97,7 +97,7 @@ else
                     line_break '#'
                     echo "Clearing the files from the build folder."
                     line_break
-                    find . ! -name 'PKGBUILD' -type f -exec rm -v {} +
+                    find . ! -name 'PKGBUILD' -type f -exec rm -vr {} +
                     line_break '^'
                     echo "Are these the correct files?"
                     to_continue
