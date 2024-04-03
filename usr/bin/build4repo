@@ -13,7 +13,7 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 clear
 cd "$PWD"
 currentDir=${PWD##*/}
-thBuildAssets="$currentDir/pkgbuild"
+thBuildAssets="pkgbuild"
 
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
@@ -30,7 +30,7 @@ if !( test_location "$thBuildAssets" ); then
 else
     line_break
     echo "Copying assets to main build folder."
-    if !(cp -vir $thBuildAssets/* $currentDir/); then
+    if !(cp -vir $thBuildAssets/* ./); then
         line_break
         echo "Copying of assets has FAILED!!"
         something_wrong
