@@ -38,7 +38,7 @@ else
         line_break
         echo "Assets copied to main build folder."
         echo "The folder now looks like this:"
-        ls $currentDir
+        echo "$(ls)" 
         line_break
         echo "Do you want to build the package?"
         to_continue
