@@ -13,7 +13,7 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 clear
 cd "$PWD"
 currentDir=${PWD##*/}
-thBuildAssets="pkgbuild"
+thBuildAssets=".pkgbuild"
 
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
@@ -106,7 +106,7 @@ else
                     echo "Clearing the folders from the build folder."
                     line_break
                     echo "You may need your password here."
-                    sudo find . -mindepth 0 -path 'pkgbuild' -prune -o ! -name '*' -type d -exec rm -vr {} +
+                    sudo find . ! -name 'PKGBUILD' -type d -exec rm -vr {} +
                     line_break '^'
                     echo "Build folder cleared. Is this correct?"
                     to_continue
