@@ -13,9 +13,38 @@ thRepo="$HOME/$myLocalRepo/$myArch"
 clear
 cd "$PWD"
 currentDir=${PWD##*/}
+thBuildAssets="$currentDir/pkgbuild"
 
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
+
+##  Check for assets
+if !( test_location "$thBuildAssets" ); then
+    line_break
+    echo "No assets folder found at:"
+    echo "$thBuildAssets"
+    echo "If the build fails then it"
+    echo "probably needs some assets."
+    line_break
+    to_continue
+else
+    line_break
+    echo "Copying assets to main build folder."
+    if !(cp -vir $thBuildAssets/* $currentDir/); then
+        line_break
+        echo "Copying of assets has FAILED!!"
+        something_wrong
+    else
+        line_break
+        echo "Assets copied to main build folder."
+        echo "The folder now looks like this:"
+        ls $currentDir
+        line_break
+        echo "Do you want to build the package?"
+        to_continue
+    fi
+fi
+
 if !( makepkg -csrf --sign ); then
     echo "This is not a PKGBUILD"
     not_my_dir
@@ -74,6 +103,8 @@ else
                     line_break
                     echo "$(ls)"
                     line_break
+                    echo "Are the correct files and folders correct?"
+                    to_continue
                     cd ..
                     update-git
                     echo "Finished $currentDir"
