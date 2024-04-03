@@ -91,11 +91,11 @@ else
                     line_break
                     echo "ZST and SIG files deleted from the"
                     echo "the repo directory."
-                    line_break
-                    find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
-                    line_break
+                    #line_break
+                    #find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
+                    #line_break
                     echo "You need your password here."
-                    sudo find . -mindepth 1 -path './pkgbuild' ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
+                    sudo find . -mindepth 0 -path './pkgbuild' ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
                     #clear
                     line_break
                     echo "Build folder cleared. Is this correct?"
