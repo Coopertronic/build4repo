@@ -38,10 +38,18 @@ else
         line_break
         echo "Assets copied to main build folder."
         echo "The folder now looks like this:"
-        echo "$(ls)" 
+        echo "$(ls)"
         line_break
         echo "Do you want to build the package?"
         to_continue
+        if !(mv -v .pkgbuild/ ../); then
+            echo "could not move assets folder."
+            something_wrong
+        else
+            clear
+            line_break '#'
+            echo "Lets start the build."
+        fi
     fi
 fi
 
@@ -97,7 +105,7 @@ else
                     line_break '#'
                     echo "Clearing the files from the build folder."
                     line_break
-                    find . ! -name 'PKGBUILD' -type f -exec rm -vr {} +
+                    find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     line_break '^'
                     echo "Are these the correct files?"
                     to_continue
@@ -106,15 +114,20 @@ else
                     echo "Clearing the folders from the build folder."
                     line_break
                     echo "You may need your password here."
-                    sudo find . ! -name 'PKGBUILD' -type d -exec rm -vr {} +
+                    sudo find . ! -name 'PKGBUILD' -type d -exec rm -vrf {} +
                     line_break '^'
+                    if !(mv -v ../.pkgbuild/ ./); then
+                        line_break '#' 10
+                        echo "Could not move the assets folder back."
+                        line_break '#' 10
+                    fi
                     echo "Build folder cleared. Is this correct?"
                     to_continue
                     clear
                     line_break '#'
                     echo "Checking the build folder."
                     line_break
-                    echo "$(ls)"
+                    echo "$(ls -a)"
                     line_break
                     echo "Are the correct files and folders correct?"
                     to_continue
