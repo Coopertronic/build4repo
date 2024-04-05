@@ -16,7 +16,7 @@ currentDir=${PWD##*/}
 thBuildAssets=".pkgbuild"
 
 ##  Check push to repo flag 0 is default (ask) 1 is no and 2 is yes
-local pushRepo=0
+pushRepo=0
 if [ -z "$1" ]; then
     pushRepo=0
 else
