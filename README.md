@@ -48,5 +48,9 @@ The build4repo script can be called with 3 different flags that relate to the ha
 
 Some ideas on expanding the script to make it more useful.
 
-- A config file that allows you set the location for your package repo folder and the hand-off script.
-- Create a routine that checks if a package is actually old and not something that just has a similar name. 
+- [ ] A config file that allows you set the location for your package repo folder and the hand-off script.
+
+- [x] Create a routine that checks if a package is actually old and not something that just has a similar name. 
+
+- [ ] Don't copy `.zst` and `.sig` files if they are identical in the package repo.
+- [ ] Get the `--noconfirm` flag running if passed, so that the script can pass it to `makepkg` to help automate the build procedure.
