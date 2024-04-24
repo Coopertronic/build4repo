@@ -54,3 +54,5 @@ Some ideas on expanding the script to make it more useful.
 
 - [ ] Don't copy `.zst` and `.sig` files if they are identical in the package repo.
 - [ ] Get the `--noconfirm` flag running if passed, so that the script can pass it to `makepkg` to help automate the build procedure.
+
+- [ ] Create a buildList script that accepts an array of folder names for `PKGBUILD` files and builds them, only updating the repo database when the list is complete.
