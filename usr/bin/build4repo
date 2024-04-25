@@ -14,14 +14,29 @@ clear
 cd "$PWD"
 currentDir=${PWD##*/}
 thBuildAssets=".pkgbuild"
+pushRepo=0
+
+##  New section that accepts args -y and -n for yes and no
+while getopts ":y:n:" option; do
+    case $option in
+    y)
+        pushRepo=2
+        ;;
+
+    n)
+        pushRepo=1
+        ;;
+
+    esac
+done
 
 ##  Check push to repo flag 0 is default (ask) 1 is no and 2 is yes
-pushRepo=0
-if [ -z "$1" ]; then
-    pushRepo=0
-else
-    pushRepo=$1
-fi
+#pushRepo=0
+#if [ -z "$1" ]; then
+#    pushRepo=0
+#else
+#    pushRepo=$1
+#fi
 
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."
