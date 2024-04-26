@@ -18,21 +18,21 @@ pushRepo=0
 noConfirm=''
 
 ##  New section that accepts args -y and -n for yes and no
-#while getopts ":yn:c:" option; do
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-    --rebuild-db|-y)
+while getopts ":yn" option; do
+#while [[ $# -gt 0 ]]; do
+    case "$option" in
+    -y)
         pushRepo=2
         ;;
 
-    --no-rebuild|-n)
+    n)
         pushRepo=1
         ;;
-    --noconfirm|-c)
-        noConfirm='--noconfirm'
-        ;;
-    ?)
-        echo "Invalid option: $1."
+    #--noconfirm|-c)
+    #    noConfirm='--noconfirm'
+    #    ;;
+    *)
+        echo "Invalid option: $option."
         exit 1
         ;;
     esac
