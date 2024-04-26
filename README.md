@@ -49,8 +49,8 @@ The `build4repo` script can be called with 3 different flags that relate to the 
 The `build4repo` script will now accept flags in place of these integers for a more human readable format as follows:
 
 - No flag = default (ask to hand-off)
-- `-n` = no hand-off
-- `-y` = yes hand-off
+- `--no-rebuild or -n` = no hand-off
+- `--rebuild-db or -y` = yes hand-off
 
 ## Future ideas
 
