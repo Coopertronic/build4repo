@@ -28,7 +28,7 @@ while getopts ":yn:c:" option; do
         pushRepo=1
         ;;
     c)
-       noConfirm='--noconfirm'
+        noConfirm='--noconfirm'
         ;;
     ?)
         echo "Invalid option: -${OPTARG}."
@@ -56,7 +56,7 @@ if !( test_location "$thBuildAssets" ); then
     echo "If the build fails then it"
     echo "probably needs some assets."
     line_break
-    to_continue
+    auto_continue $noConfirm
 else
     line_break
     echo "Copying assets to main build folder."
@@ -71,7 +71,7 @@ else
         echo "$(ls)"
         line_break
         echo "Do you want to build the package?"
-        to_continue
+        auto_continue $noConfirm
         if !(mv -v .pkgbuild/ ../); then
             echo "could not move assets folder."
             something_wrong
@@ -111,7 +111,7 @@ else
             echo "the build folder."
             echo "Are you ready?"
             line_break
-            #to_continue
+            #auto_continue $noConfirm
             clear
             echo "Let's Check for duplicates in the"
             echo "x86_64 folder and remove the"
@@ -130,7 +130,7 @@ else
                     echo "ZST and SIG files deleted from the"
                     echo "the repo directory."
                     line_break
-                    #to_continue
+                    #auto_continue $noConfirm
                     clear
                     line_break '#'
                     echo "Clearing the files from the build folder."
@@ -138,7 +138,7 @@ else
                     find . ! -name 'PKGBUILD' -type f -exec rm -vf {} +
                     line_break '^'
                     echo "Are these the correct files?"
-                    #to_continue
+                    #auto_continue $noConfirm
                     clear
                     line_break '#'
                     echo "Clearing the folders from the build folder."
@@ -152,7 +152,7 @@ else
                         line_break '#' 34
                     fi
                     echo "Build folder cleared. Is this correct?"
-                    #to_continue
+                    #auto_continue $noConfirm
                     clear
                     line_break '#'
                     echo "Checking the build folder."
@@ -160,7 +160,7 @@ else
                     echo "$(ls -a)"
                     line_break
                     echo "Are the correct files and folders correct?"
-                    #to_continue
+                    #auto_continue $noConfirm
                     cd ..
                     update-git
                     repoReady=$'The ctos-side-repo is updated\nand ready to serve\nthe updated packages.'
@@ -174,7 +174,7 @@ else
                         fi
                     else
                         echo "Do you want to push to the side repo?"
-                        to_continue
+                        to_continue $noConfirm
                         cd $HOME/$myLocalRepo
                         bash update-repo.sh
                         echo "$repoReady"
