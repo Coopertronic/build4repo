@@ -38,6 +38,12 @@ The script will then ask you to add a commit message before updating the git rep
 
 ### The Hand-off
 
+##### Warning!!
+
+###### This is currently Broken!!
+
+The flags -n and -y work on their own. Nothing else is possible because of unchecked loops.
+
 When the script has finished it can be asked to  hand-off to another script that will update your package repo with the new packages. I use a git repo to store my built signed packages and then pull them from the remote server that serves the packages.
 
 The `build4repo` script can be called with 3 different flags that relate to the hand-off as follows:
