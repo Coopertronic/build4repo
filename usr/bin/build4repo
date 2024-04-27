@@ -1,9 +1,28 @@
 #!/bin/bash
 
 ##	This script will chuck the finished zst packages into the side repo and then clean up the site and upload the PKGBUILD version.
+PROGRAM=$(basename $0)
+VERSION="0.0.1" # try to get the PKGBUILD file to update this when it builds the package.
 
-## Functions
+# Functions
 source ctos-functions
+##  Print version info
+version_info() {
+    echo -e "\n$0 $VERSION - Matthew Phillip Cooper"
+}
+##  Help screen
+help_me() {
+    version_info
+    cat <<EOT
+    Usage: $PROGRAM <-y or -n> <-c>
+        -y to rebuild the repo database.
+        -n to not rebuild the repo database.
+        -c to add the noconfirm flag to makepkg and auto-continue.
+        -v to display version information
+        -h to view this help screen
+    If used with no option then it will prompt you for eveything.
+EOT
+}
 
 ## Recycle
 myLocalRepo="pkgBld/ctos-side-repo"
@@ -17,34 +36,33 @@ thBuildAssets=".pkgbuild"
 pushRepo=0
 noConfirm=''
 
-##  New section that accepts args -y and -n for yes and no
-while getopts ":yn" option; do
-    #while [[ $# -gt 0 ]]; do
-    case "$option" in
-    -y)
+##  New section that accepts args -y and -n for yes and no, and -c for --noconfirm
+while getopts "ynchv" option; do
+    case $option in
+    y)
         pushRepo=2
         ;;
 
-    -n)
+    n)
         pushRepo=1
         ;;
-    #--noconfirm|-c)
-    #    noConfirm='--noconfirm'
-    #    ;;
-    *)
-        echo "Invalid option: ${option}."
+    c)
+        noConfirm='--noconfirm'
+        ;;
+    h)
+        help_me
+        exit 3
+        ;;
+    v)
+        version_info
+        exit 3
+        ;;
+    ?)
+        help_me
         exit 1
         ;;
     esac
 done
-
-##  Check push to repo flag 0 is default (ask) 1 is no and 2 is yes
-#pushRepo=0
-#if [ -z "$1" ]; then
-#    pushRepo=0
-#else
-#    pushRepo=$1
-#fi
 
 echo "Building package and pushing"
 echo "it to the side repo for compiling and uploading."

@@ -6,25 +6,26 @@ VERSION="0.0.1"
 pushRepo=0
 noConfirm=''
 
-version() {
+version_info() {
     echo -e "\n$0 $VERSION - Matthew Phillip Cooper"
 }
 
 ##  Help screen
 help_me() {
-    version
+    version_info
     cat <<EOT
     Usage: $PROGRAM <-y or -n> <-c>
         -y to rebuild the repo database.
         -n to not rebuild the repo database.
         -c to add the noconfirm flag to makepkg and auto-continue.
+        -v to display version information
+        -h to view this help screen
     If used with no option then it will prompt you for eveything.
 EOT
-    exit 3
 }
 
 ##  New section that accepts args -y and -n for yes and no, and -c for --noconfirm
-while getopts "ynch" option; do
+while getopts "ynchv" option; do
     case $option in
     y)
         pushRepo=2
@@ -38,6 +39,10 @@ while getopts "ynch" option; do
         ;;
     h)
         help_me
+        exit 3
+        ;;
+    v)
+        version_info
         exit 3
         ;;
     ?)
