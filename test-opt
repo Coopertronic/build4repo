@@ -28,23 +28,19 @@ while getopts "ynch" option; do
     case $option in
     y)
         pushRepo=2
-        #break
         ;;
 
     n)
         pushRepo=1
-        #break
         ;;
     c)
         noConfirm='--noconfirm'
-        #break
         ;;
     h)
         help_me
         exit 3
         ;;
     ?)
-        #echo "Invalid option: ${option}."
         help_me
         exit 1
         ;;
@@ -52,5 +48,7 @@ while getopts "ynch" option; do
 done
 
 echo "Push to repo = $pushRepo"
-echo "Confirmation: $noConfirm"
+if [[ "$noConfirm" != '' ]]; then
+    echo "Confirmation: $noConfirm"
+fi
 exit 0
