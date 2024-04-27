@@ -12,7 +12,9 @@ version_info() {
 }
 ##  Help screen
 help_me() {
+    line_break
     version_info
+    line_break
     cat <<EOT
     Usage: $PROGRAM <-y or -n> <-c>
         -y to rebuild the repo database.
@@ -22,6 +24,7 @@ help_me() {
         -h to view this help screen
     If used with no option then it will prompt you for eveything.
 EOT
+    line_break
 }
 
 ## Recycle
