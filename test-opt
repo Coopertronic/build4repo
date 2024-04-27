@@ -11,35 +11,19 @@ version() {
 }
 
 ##  Help screen
-usage() {
+help_me() {
     version
     cat <<EOT
-    Usage: $PROGRAM -y or -n to build the database or not -c for --noconfirm
-        One of the following commands are required:
-      * -b|--build <build>   : The 4-digit release printed on the DVD (required)
-      * -s|--server <server> : Use <server> for NCOA image (assumes Rsync mode)
-        And any combination of the following OPTIONS are optional:
-        -c|--clean           : Run the ncoa_clean.sh script prior to install
-        -f|--force           : Force the install regardless of current status
-                               (use this to restart a bad install)
-        -h|--help            : Print this help message.
-        -t|--test            : Run tests even if already installed
-        --notest             : Do not run tests
-        -v|--verbose         : Provide more feedback (may be given more than once)
-        -V|--version         : Display the program version and exit
-    * Required
+    Usage: $PROGRAM <-y or -n> <-c>
+        -y to rebuild the repo database.
+        -n to not rebuild the repo database.
+        -c to add the noconfirm flag to makepkg and auto-continue.
+    If used with no option then it will prompt you for eveything.
 EOT
     exit 3
 }
 
-##  New section that accepts args -y and -n for yes and no
-OPTIONS=$(getopt -o nych --long rebuild-db,no-rebuild,noconfirm,help -- "$@")
-#[[ $? -ne 0 ]] && usage
-
-eval set -- "$OPTIONS"
-
-#while true; do
-#while [[ $# -gt 0 ]]; do
+##  New section that accepts args -y and -n for yes and no, and -c for --noconfirm
 while getopts "ynch" option; do
     case $option in
     y)
@@ -56,14 +40,12 @@ while getopts "ynch" option; do
         #break
         ;;
     h)
-        usage
+        help_me
+        exit 3
         ;;
-    #--)
-    #    shift
-    #    break
-    #    ;;
     *)
         echo "Invalid option: $option."
+        help_me
         exit 1
         ;;
     esac
