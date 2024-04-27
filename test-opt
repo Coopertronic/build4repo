@@ -1,0 +1,54 @@
+#!/bin/bash
+PROGRAM=$(basename $0)
+VERSION="0.0.1"
+
+## Testing the best opt script to define the operation of build4repo
+pushRepo=0
+noConfirm=''
+
+version() {
+    echo -e "\n$0 $VERSION - Matthew Phillip Cooper"
+}
+
+##  Help screen
+help_me() {
+    version
+    cat <<EOT
+    Usage: $PROGRAM <-y or -n> <-c>
+        -y to rebuild the repo database.
+        -n to not rebuild the repo database.
+        -c to add the noconfirm flag to makepkg and auto-continue.
+    If used with no option then it will prompt you for eveything.
+EOT
+    exit 3
+}
+
+##  New section that accepts args -y and -n for yes and no, and -c for --noconfirm
+while getopts "ynch" option; do
+    case $option in
+    y)
+        pushRepo=2
+        ;;
+
+    n)
+        pushRepo=1
+        ;;
+    c)
+        noConfirm='--noconfirm'
+        ;;
+    h)
+        help_me
+        exit 3
+        ;;
+    ?)
+        help_me
+        exit 1
+        ;;
+    esac
+done
+
+echo "Push to repo = $pushRepo"
+if [[ "$noConfirm" != '' ]]; then
+    echo "Confirmation: $noConfirm"
+fi
+exit 0
