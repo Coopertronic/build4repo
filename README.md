@@ -40,7 +40,7 @@ The script will then ask you to add a commit message before updating the git rep
 
 ##### Warning!!
 
-###### This is currently Broken!!
+###### `--noconfirm or -c` option is currently Broken!!
 
 The flags -n and -y work on their own. Nothing else is possible because of unchecked loops.
 
