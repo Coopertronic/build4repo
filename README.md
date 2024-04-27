@@ -24,12 +24,6 @@ When the script has successfully built a package it will copy it to the repo fol
 
 `cp -vir *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/`
 
-##### Warning!
-
-~~The script will look for older packages of the same suffix and deletes them. This has a slight bug at the moment where it does not check if the older files are actually for a different package, meaning that if `calamares` is built after `clalmares-settings` it will delete the settings package as well as the older calamares package. This can be an issue if you are building multiple packages as you will need the shortest similar prefixed package to be built first.~~
-
-This warning has been fixed!
-
 ### Clean up
 
 When the package has been successfully built the script will delete everything in the `PKGBUILD` folder and move the `.pkgbuild` folder from ../ back into the `PKGBUILD` folder. 
@@ -37,10 +31,6 @@ When the package has been successfully built the script will delete everything i
 The script will then ask you to add a commit message before updating the git repo. I keep my PKGBUILD folders in a git repo so that any automatic changes that are made to scripts are updated. These changes are normally just git version numbers.
 
 ### The Hand-off
-
-##### Warning!!
-
-###### `--noconfirm or -c` option is currently Broken!!
 
 The flags -n and -y work on their own. Nothing else is possible because of unchecked loops.
 
@@ -68,6 +58,6 @@ Some ideas on expanding the script to make it more useful.
 - [x] Create a routine that checks if a package is actually old and not something that just has a similar name. 
 
 - [ ] Don't copy `.zst` and `.sig` files if they are identical in the package repo.
-- [ ] Get the `--noconfirm` flag running if passed, so that the script can pass it to `makepkg` to help automate the build procedure. This should also translated to the `to_continue` function in `ctos-functions` in the form of a wrapper called `auto-continue`, which will accept a `-c` flag to continue without input, ignoring the `to_continue` function.
+- [x] Get the `--noconfirm` flag running if passed, so that the script can pass it to `makepkg` to help automate the build procedure. This should also translated to the `to_continue` function in `ctos-functions` in the form of a wrapper called `auto-continue`, which will accept a `-c` flag to continue without input, ignoring the `to_continue` function.
 
 - [ ] Create a `buildList` script that accepts an array of folder names for `PKGBUILD` files and builds them, only updating the repo database when the list is complete.
