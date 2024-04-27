@@ -43,8 +43,8 @@ while getopts "ynch" option; do
         help_me
         exit 3
         ;;
-    *)
-        echo "Invalid option: $option."
+    ?)
+        #echo "Invalid option: ${option}."
         help_me
         exit 1
         ;;
