@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../useful-bash-functions"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../ctos-pkgbuilds"
+		}
+	],
+	"settings": {}
+}
