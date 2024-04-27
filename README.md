@@ -57,6 +57,7 @@ The `build4repo` script will now accept flags in place of these integers for a m
 - No flag = default (ask to hand-off)
 - `--no-rebuild or -n` = no hand-off
 - `--rebuild-db or -y` = yes hand-off
+- `--noconfirm or -c` = do not prompt user to continue or install dependencies
 
 ## Future ideas
 
