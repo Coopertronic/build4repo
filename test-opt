@@ -1,0 +1,74 @@
+#!/bin/bash
+PROGRAM=$(basename $0)
+VERSION="0.0.1"
+
+## Testing the best opt script to define the operation of build4repo
+pushRepo=0
+noConfirm=''
+
+version() {
+    echo -e "\n$0 $VERSION - Matthew Phillip Cooper"
+}
+
+##  Help screen
+usage() {
+    version
+    cat <<EOT
+    Usage: $PROGRAM -y or -n to build the database or not -c for --noconfirm
+        One of the following commands are required:
+      * -b|--build <build>   : The 4-digit release printed on the DVD (required)
+      * -s|--server <server> : Use <server> for NCOA image (assumes Rsync mode)
+        And any combination of the following OPTIONS are optional:
+        -c|--clean           : Run the ncoa_clean.sh script prior to install
+        -f|--force           : Force the install regardless of current status
+                               (use this to restart a bad install)
+        -h|--help            : Print this help message.
+        -t|--test            : Run tests even if already installed
+        --notest             : Do not run tests
+        -v|--verbose         : Provide more feedback (may be given more than once)
+        -V|--version         : Display the program version and exit
+    * Required
+EOT
+    exit 3
+}
+
+##  New section that accepts args -y and -n for yes and no
+OPTIONS=$(getopt -o nych --long rebuild-db,no-rebuild,noconfirm,help -- "$@")
+#[[ $? -ne 0 ]] && usage
+
+eval set -- "$OPTIONS"
+
+#while true; do
+#while [[ $# -gt 0 ]]; do
+while getopts "ynch" option; do
+    case $option in
+    y)
+        pushRepo=2
+        #break
+        ;;
+
+    n)
+        pushRepo=1
+        #break
+        ;;
+    c)
+        noConfirm='--noconfirm'
+        #break
+        ;;
+    h)
+        usage
+        ;;
+    #--)
+    #    shift
+    #    break
+    #    ;;
+    *)
+        echo "Invalid option: $option."
+        exit 1
+        ;;
+    esac
+done
+
+echo "Push to repo = $pushRepo"
+echo "Confirmation: $noConfirm"
+exit 0
