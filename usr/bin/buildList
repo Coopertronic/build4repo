@@ -14,7 +14,7 @@ version_info() {
 help_me() {
     version_info
     cat <<EOT
-    Usage: $PROGRAM <-c> <-l | [list of packages by folder name]>
+    Usage: $PROGRAM <-l [list of packages by folder name]>
     *   -l to pass a list of packages by folder name seprated by a space.
         -v to display version information
         -h to view this help screen
