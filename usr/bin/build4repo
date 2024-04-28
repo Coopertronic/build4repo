@@ -184,7 +184,7 @@ else
                     echo "Are the correct files and folders correct?"
                     #auto_continue $noConfirm
                     cd ..
-                    update-git
+                    update-git "Built $currentDir."
                     repoReady=$'The ctos-side-repo is updated\nand ready to serve\nthe updated packages.'
                     echo "Finished building $currentDir package."
                     ##  If it's not 0 (ask) and not 1 (no) then it must be 2 (yes)

@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../ctos-pkgbuilds"
+		},
+		{
+			"path": "../git-helper"
 		}
 	],
 	"settings": {}
