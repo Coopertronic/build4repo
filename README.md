@@ -1,38 +1,67 @@
-# build4repo
+# Automatic Mass Package Builder and Uploader
+
+This collection of scripts is designed to help automating running and maintaining your own ArchLinux package repository.
+
+Currently these script only work in a spcific way:
+
+### `build4repo`
+
+You must be in the same folder as the `PKGBUILD` file to successfully build a package.
+
+Your package repository must be in `$HOME/pkgbuild/ctos-side-repo/` and your architecture must be `x86_64`.
+
+This script is currently only setup with my preferences.
+
+```bash
+## Recycle
+myLocalRepo="pkgBld/ctos-side-repo"
+myArch="x86_64/"
+thRepo="$HOME/$myLocalRepo/$myArch"
+```
+
+
+
+## `build4repo`
 
 This script depends on `ctos-functions` in the [useful-bash-scripts](https://github.com/Coopertronic/useful-bash-functions) repo.
 
 Build a package with the `PKGBUILD` and send it to the repo folder. A script that enables me to build a package for ArchLinux and send it to my side repo. It should clean up all it's own junk and work from one command. Only a password will be required for remote servers and `sudo` calls.
 
-## Check `PKGBUILD` Exists
+### Check `PKGBUILD` Exists
 
 At first the script checks if there are any build scripts and assets in the `.pkgbuild` folder in the `PKGBUILD` folder. It will then copy the files out of the `.pkgbuild` folder into the `PKGBUILD` folder and then move the `.pkgbuild` folder to `../`
 
 If the `.pkgbuild` folder does not exist then it will say so, but will not exit the script as some `PKGBUILD` scripts don't require any assets or install scripts to be there before `makepkg` is run.
 
-## Build with `makepkg`
+### Build with `makepkg`
 
 When the script runs it will invoke:
 
-`makepkg -csrf --sign`
+```bash
+makepkg -csrf --sign
+```
 
-If the `-c` flag is used then `--noconfirm` will be added to the end of the `makepkg` command.
+If the `-c` flag is used when build4repo is called then `--noconfirm` will be added to the end of the `makepkg` command.
 
 If no `PKGBUILD` is found the script will exit and ask you to check your location.
 
-## Copy to your repo
+### Copy to your repo
 
 When the script has successfully built a package it will copy it to the repo folder. You can have this as whatever you want. I have put my repo here:
 
-`cp -vnr *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/`
+```bash
+cp -vnr *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/
+```
 
-### Clean up
+
+
+#### Clean up
 
 When the package has been successfully built the script will delete everything in the `PKGBUILD` folder and move the `.pkgbuild` folder from ../ back into the `PKGBUILD` folder. 
 
 The script will then ask you to add a commit message before updating your git-repo. I keep my `PKGBUILD` folders in a git-repo so that any automatic changes that are made to scripts are updated. These changes are normally just git version numbers.
 
-### The Hand-off
+#### The Hand-off
 
 The flags -n and -y work on their own. Nothing else is possible because of unchecked loops.
 
@@ -51,7 +80,7 @@ The `build4repo` script will now accept flags in place of these integers for a m
 - `-y` = yes hand-off
 - `-c` = do not prompt user to continue or install dependencies
 
-# buildList
+## `buildList`
 
 This is the second script, which is a simple wrapper for the build4repo script. It also depends on
 
