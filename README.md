@@ -1,8 +1,8 @@
-# Automatic Mass Package Builder and Uploader
+# Automatic Mass Package Builder and Uploading Machine
 
 This collection of scripts is designed to help automating running and maintaining your own ArchLinux package repository.
 
-Currently these script only work in a spcific way:
+Currently these script only work in a specific way:
 
 ### `build4repo`
 
