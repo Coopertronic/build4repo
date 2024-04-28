@@ -23,6 +23,15 @@ help_me() {
     A package list MUST be supplied via -l.
     The package list MUST be space seprated.
     The package names MUST NOT include any spaces.
+
+    Example:
+
+        --  buildList -l 'yay-git scummvm-git build4repo'
+
+    See man page build4repo for more help.
+
+        --  man build4repo
+    
 EOT
 }
 

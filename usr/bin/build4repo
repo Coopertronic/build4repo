@@ -23,6 +23,15 @@ help_me() {
         -v to display version information
         -h to view this help screen
     If used with no option then it will prompt you for eveything.
+
+    Example:
+
+        --  build4repo -y -c
+
+    See man page build4repo for more help.
+
+        --  man build4repo
+    
 EOT
     line_break
 }
