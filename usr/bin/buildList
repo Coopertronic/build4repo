@@ -2,7 +2,10 @@
 PROGRAM=$(basename $0)
 VERSION="0.0.1"
 
+toBuild=()
+
 #   Functions
+source ctos-functions
 ##      Script version
 version_info() {
     echo -e "\n$0 $VERSION - Matthew Phillip Cooper"
@@ -11,12 +14,33 @@ version_info() {
 help_me() {
     version_info
     cat <<EOT
-    Usage: $PROGRAM <-y or -n> <-c>
-        -y to rebuild the repo database.
-        -n to not rebuild the repo database.
-        -c to add the noconfirm flag to makepkg and auto-continue.
+    Usage: $PROGRAM <-c> <-l | [list of packages by folder name]>
+    *   -l to pass a list of packages by folder name seprated by a space.
         -v to display version information
         -h to view this help screen
-    If used with no option then it will prompt you for eveything.
+    * = Required
+    If used with no option then it will fail.
+    A package list MUST be supplied via -l.
+    The package list MUST be space seprated.
+    The package names MUST NOT include any spaces.
 EOT
 }
+
+while getopts "hvl:" option; do
+    case $option in
+    l)
+        toBuild=(${OPTARG})
+    h)
+        help_me
+        exit 3
+        ;;
+    v)
+        version_info
+        exit 3
+        ;;
+    ?)
+        help_me
+        exit 1
+        ;;
+    esac
+done
