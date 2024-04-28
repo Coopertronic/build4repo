@@ -22,7 +22,7 @@ If no `PKGBUILD` is found the script will exit and ask you to check your locatio
 
 When the script has successfully built a package it will copy it to the repo folder. You can have this as whatever you want. I have mine put it here:
 
-`cp -vir *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/`
+`cp -vnr *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/`
 
 ### Clean up
 

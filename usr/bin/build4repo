@@ -123,7 +123,7 @@ else
         echo "Found the repo location."
         line_break
         echo "Copying the ZST and SIG files to the repo."
-        if !( cp -vir *.zst* $thRepo ); then
+        if !( cp -vnr *.zst* $thRepo ); then
             something_wrong
         else
             echo "Files copied"
