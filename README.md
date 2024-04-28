@@ -61,3 +61,5 @@ Some ideas on expanding the script to make it more useful.
 - [x] Get the `--noconfirm` flag running if passed, so that the script can pass it to `makepkg` to help automate the build procedure. This should also translated to the `to_continue` function in `ctos-functions` in the form of a wrapper called `auto-continue`, which will accept a `-c` flag to continue without input, ignoring the `to_continue` function.
 
 - [x] Create a `buildList` script that accepts an array of folder names for `PKGBUILD` files and builds them, only updating the repo database when the list is complete.
+
+- [ ] Make the git update auto commit message saying that the current git source was built.
