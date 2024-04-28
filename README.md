@@ -16,13 +16,19 @@ When the script runs it will invoke:
 
 `makepkg -csrf --sign`
 
+If the `-c` flag is used then `--noconfirm` will be added to the end of the `makepkg` command.
+
 If no `PKGBUILD` is found the script will exit and ask you to check your location.
 
 ## Copy to your repo
 
-When the script has successfully built a package it will copy it to the repo folder. You can have this as whatever you want. I have mine put it here:
+When the script has successfully built a package it will copy it to the repo folder. You can have this as whatever you want. I have put my repo here:
 
 `cp -vnr *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/`
+
+I will now start to attempt to put this type of info into a config file. Of course there will need to be an extension to the scripts which check for a config file in `$HOME/.config/build4repo` and exits if one is not found. It can be further expanded to prompt for the creation and ask the user where everything is supposed to be found.
+
+I think the best way to approach making a config-file is to look into `JSON` so I can have 1 config-file that tells the scripts all they need to know.
 
 ### Clean up
 
