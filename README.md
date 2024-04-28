@@ -57,7 +57,7 @@ Some ideas on expanding the script to make it more useful.
 
 - [x] Create a routine that checks if a package is actually old and not something that just has a similar name. 
 
-- [ ] Don't copy `.zst` and `.sig` files if they are identical in the package repo.
+- [x] Don't copy `.zst` and `.sig` files if they are identical in the package repo.
 - [x] Get the `--noconfirm` flag running if passed, so that the script can pass it to `makepkg` to help automate the build procedure. This should also translated to the `to_continue` function in `ctos-functions` in the form of a wrapper called `auto-continue`, which will accept a `-c` flag to continue without input, ignoring the `to_continue` function.
 
-- [ ] Create a `buildList` script that accepts an array of folder names for `PKGBUILD` files and builds them, only updating the repo database when the list is complete.
+- [x] Create a `buildList` script that accepts an array of folder names for `PKGBUILD` files and builds them, only updating the repo database when the list is complete.
