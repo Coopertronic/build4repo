@@ -44,3 +44,36 @@ while getopts "hvl:" option; do
         ;;
     esac
 done
+clear
+line_break '#'
+echo -e '\nThis will build a lot of updated\npackages with a new package build method.'
+line_break
+##  List packages here.
+line_break
+echo -e 'Are you ready to build\nmultiple packages for CTOS?'
+to_continue
+cd "$PWD"
+for i in "${toBuild[@]}"; do
+    thPkgbuild="${i}"
+    if [ "$i" != "${toBuild[-1]}" ]; then
+        echo "$thPkgbuild"
+        if !( test_location "$thPkgbuild" ); then
+            something_wrong
+        else
+            cd $thPkgbuild
+            bash build4repo -n -c
+            cd ..
+        fi
+    else
+        echo "The last package is: $thPkgbuild"
+        if !( test_location "$thPkgbuild" ); then
+            something_wrong
+        else
+            cd $thPkgbuild
+            bash build4repo -y -c
+            cd ..
+        fi
+    fi
+done
+line_break
+echo "The packages are built"
