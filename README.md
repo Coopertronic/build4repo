@@ -4,13 +4,13 @@ This script depends on `ctos-functions` in the [useful-bash-scripts](https://git
 
 Build a package with the `PKGBUILD` and send it to the repo folder. A script that enables me to build a package for ArchLinux and send it to my side repo. It should clean up all it's own junk and work from one command. Only a password will be required for remote servers and `sudo` calls.
 
-## Check PKGBUILD Exists
+## Check `PKGBUILD` Exists
 
 At first the script checks if there are any build scripts and assets in the `.pkgbuild` folder in the `PKGBUILD` folder. It will then copy the files out of the `.pkgbuild` folder into the `PKGBUILD` folder and then move the `.pkgbuild` folder to `../`
 
 If the `.pkgbuild` folder does not exist then it will say so, but will not exit the script as some `PKGBUILD` scripts don't require any assets or install scripts to be there before `makepkg` is run.
 
-## makepkg
+## Build with `makepkg`
 
 When the script runs it will invoke:
 
@@ -26,15 +26,11 @@ When the script has successfully built a package it will copy it to the repo fol
 
 `cp -vnr *.zst.* ~/pkgbuild/ctos-side-repo/x86_64/`
 
-I will now start to attempt to put this type of info into a config file. Of course there will need to be an extension to the scripts which check for a config file in `$HOME/.config/build4repo` and exits if one is not found. It can be further expanded to prompt for the creation and ask the user where everything is supposed to be found.
-
-I think the best way to approach making a config-file is to look into `JSON` so I can have 1 config-file that tells the scripts all they need to know.
-
 ### Clean up
 
 When the package has been successfully built the script will delete everything in the `PKGBUILD` folder and move the `.pkgbuild` folder from ../ back into the `PKGBUILD` folder. 
 
-The script will then ask you to add a commit message before updating the git repo. I keep my PKGBUILD folders in a git repo so that any automatic changes that are made to scripts are updated. These changes are normally just git version numbers.
+The script will then ask you to add a commit message before updating your git-repo. I keep my `PKGBUILD` folders in a git-repo so that any automatic changes that are made to scripts are updated. These changes are normally just git version numbers.
 
 ### The Hand-off
 
@@ -54,6 +50,22 @@ The `build4repo` script will now accept flags in place of these integers for a m
 - `-n` = no hand-off
 - `-y` = yes hand-off
 - `-c` = do not prompt user to continue or install dependencies
+
+# buildList
+
+This is the second script, which is a simple wrapper for the build4repo script. It also depends on
+
+I will now attempt to put this type of info into a config-file. Of course there will need to be an extension to the scripts which check for a config file in `$HOME/.config/build4repo` and exits if one is not found. It can be further expanded to prompt for the creation and ask the user where everything is supposed to be found.
+
+I think the best way to approach making a config-file is to look into `JSON` so I can have 1 config-file that tells the scripts all they need to know.
+
+### The config-file
+
+The config-file needs some key pieces of information:
+
+- the location of where the built packages are stored.
+- the location of the package builds repo.
+- The Arch you are building for.
 
 ## Future ideas
 
