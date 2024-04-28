@@ -19,7 +19,15 @@ myArch="x86_64/"
 thRepo="$HOME/$myLocalRepo/$myArch"
 ```
 
+### `buildList`
 
+This script has to be run in the folder containing multiple package folders, which each contain a `PKGBUILD` file, optionally a `.pkgbuild` hidden folder containing any other build assets that may be needed. The script will warn you if no `.pkgbuild` folder is found.
+
+The `buildList` script MUST have the list using the `-l` flag followed by the list of packages by their containing folder names.
+
+```bash
+buildList -l 'yay-git scummvm-git'
+```
 
 ## `build4repo`
 
