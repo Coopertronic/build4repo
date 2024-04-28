@@ -117,4 +117,4 @@ Some ideas on expanding the script to make it more useful.
 
 - [x] Create a `buildList` script that accepts an array of folder names for `PKGBUILD` files and builds them, only updating the repo database when the list is complete.
 
-- [ ] Make the git update auto commit message saying that the current git source was built.
+- [ ] Make the git update auto commit message saying that the current git source was built. Git-helper will need to be updated for this to work.
