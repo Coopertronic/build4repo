@@ -86,11 +86,11 @@ The `build4repo` script will now accept flags in place of these integers for a m
 - No flag = default (ask to hand-off)
 - `-n` = no hand-off
 - `-y` = yes hand-off
-- `-c` = do not prompt user to continue or install dependencies
+- `-c` = do not prompt user to continue or install dependencies.
 
 ## `buildList`
 
-This is the second script, which is a simple wrapper for the build4repo script. It also depends on
+This is the second script, which is a simple wrapper for the build4repo script. It also depends on `ctos-functions`.
 
 I will now attempt to put this type of info into a config-file. Of course there will need to be an extension to the scripts which check for a config file in `$HOME/.config/build4repo` and exits if one is not found. It can be further expanded to prompt for the creation and ask the user where everything is supposed to be found.
 
