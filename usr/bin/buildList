@@ -30,6 +30,7 @@ while getopts "hvl:" option; do
     case $option in
     l)
         toBuild=(${OPTARG})
+        ;;
     h)
         help_me
         exit 3
@@ -49,6 +50,7 @@ line_break '#'
 echo -e '\nThis will build a lot of updated\npackages with a new package build method.'
 line_break
 ##  List packages here.
+echo ${toBuild[@]}
 line_break
 echo -e 'Are you ready to build\nmultiple packages for CTOS?'
 to_continue
