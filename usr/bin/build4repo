@@ -105,6 +105,9 @@ else
         auto_continue $noConfirm
         if !(mv -v .pkgbuild/ ../); then
             echo "could not move assets folder."
+            ##  This seems to happen when another build is in progress.
+            ##  Look into packaging parts of this routine out to a function or few.
+            ##  This error needs excepting.
             something_wrong
         else
             clear
