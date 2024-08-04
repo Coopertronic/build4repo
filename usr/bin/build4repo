@@ -108,6 +108,7 @@ else
             ##  This seems to happen when another build is in progress.
             ##  Look into packaging parts of this routine out to a function or few.
             ##  This error needs excepting.
+            ##  New branch called multi-run-error.
             something_wrong
         else
             clear
