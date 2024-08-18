@@ -35,6 +35,10 @@ help_me() {
 EOT
     line_break
 }
+##  multi-run-error
+multi_run() {
+    line_break
+}
 
 ## Recycle
 myLocalRepo="pkgBld/ctos-side-repo"
